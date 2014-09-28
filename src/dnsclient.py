@@ -51,7 +51,7 @@ class DNSClient(object):
 #      self.params =  { 'username' : self.un, 'password' : self.pw, 'submit' : 'Login', 'remote' : '', 'from' : 'L3ByZW1pdW0vYml0Y29pbi8=', 'action' : 'auth'}
       self.params =  { 'username' : self.un, 'password' : self.pw, 'submit' : 'Login', 'remote' : '', 'action' : 'auth'}
       response, error_string =  self._makerequest(url, 'POST')
-      return response
+      return response, error_string
       
 
    def addsubdomain(self, domain_id, subdomain, dest_type, dest_address):
@@ -63,7 +63,7 @@ class DNSClient(object):
             'address' : dest_address}
       self.url  = 'http://freedns.afraid.org/subdomain/save.php?step=2'
       r, error = self._makerequest(self.url, 'POST')
-      return r
+      return r, error
 
 
    def newsession(self, username, password):
