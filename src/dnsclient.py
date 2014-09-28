@@ -18,7 +18,8 @@ class DNSClient(object):
       error_string=None
       if method == 'GET':
          r= self.session.get(url, headers=self.headers)
-      elif method == 'POST': r= self.session.post(url, headers=self.headers, params=self.params) else:
+      elif method == 'POST': r= self.session.post(url, headers=self.headers, params=self.params) 
+      else:
          raise Exception("_makerequest only takes 'GET' and 'POST' methods")
       if not r.status_code == 200: 
          error_string = "Bad response code:  " + str(r.status_code)
