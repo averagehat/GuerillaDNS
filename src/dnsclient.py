@@ -30,13 +30,7 @@ class DNSClient(object):
 
    def get_page_errors(self, response):
       has_error_re=r'(?:<.+?>[^<>]*?)([0-9]\serrors?)(?:[^<>]*?<.+?>)'
-     # errors_re = r'(?:<.+?>[^<>]*?)">("?[\(\)\@\,\s\"\+\?\-a-zA-Z0-9\.]+"?)|(?:\s)(?:[^<>]*?<.+?>)'
-    #  errors_re = r'(?:<.+?>[^<>]*?)<li>("?[\(\)\@\,\s\"\+\?\-a-zA-Z0-9\.\n]+"?)(?:[^<>]*?<.+?>)'
-     # errors_re = r'(?:<.+?>[^<>]*?)<li>((.|\n)+)</font>(?:[^<>]*?<.+?>)'
       errors_re = r'(?:<.+?>[^<>]*?)<li>("?[\(\)\@\,\s\"\+\?\-a-zA-Z0-9\.|\n]+"?)(?:[^<>]*?<.+?>)'
-     # errors_re = r'(?:<.+?>[^<>]*?)\<li\>(.+)\<\/font\>(?:[^<>]*?<.+?>)'
-     # errors_re = r'(?:<.+?>[^<>]*?)\<li\>(.+)\<\/font\>'
-
       has_error = re.findall(has_error_re, response.text)
       print has_error
       if has_error:
@@ -48,7 +42,6 @@ class DNSClient(object):
    def login(self):
       url = 'http://freedns.afraid.org/zc.php?step=2'
       self.headers =  {'content-type' : 'application/x-www-form-urlencoded'}
-#      self.params =  { 'username' : self.un, 'password' : self.pw, 'submit' : 'Login', 'remote' : '', 'from' : 'L3ByZW1pdW0vYml0Y29pbi8=', 'action' : 'auth'}
       self.params =  { 'username' : self.un, 'password' : self.pw, 'submit' : 'Login', 'remote' : '', 'action' : 'auth'}
       response, error_string =  self._makerequest(url, 'POST')
       return response, error_string
